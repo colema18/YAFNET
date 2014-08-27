@@ -29,7 +29,7 @@
     </FileUpgradeFlags>
     <UpgradeBackupLocation>
     </UpgradeBackupLocation>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <OldToolsVersion>4.0</OldToolsVersion>
     <TargetFrameworkProfile />
     <UseIISExpress>true</UseIISExpress>
@@ -64,6 +64,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\</OutputPath>
@@ -89,6 +90,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup>
     <SignAssembly>true</SignAssembly>
@@ -105,6 +107,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="CookComputing.XmlRpcV2">
@@ -118,6 +121,10 @@
     <Reference Include="Microsoft.JScript" />
     <Reference Include="nStuff.UpdateControls">
       <HintPath>..\packages\nStuff.UpdateControls.1.2.0.0\lib\net35\nStuff.UpdateControls.dll</HintPath>
+    </Reference>
+    <Reference Include="Sitecore.Kernel, Version=7.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\YAF.References\Sitecore.Kernel.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Name>System</Name>
@@ -310,6 +317,8 @@
     <Compile Include="Modules\Events\LastVisitEventHandler.cs" />
     <Compile Include="Modules\PopupDialogNotification.cs" />
     <Compile Include="Modules\ScriptsLoaderModule.cs" />
+    <Compile Include="Modules\Sitecore\SitecoreDomainManager.cs" />
+    <Compile Include="Modules\Sitecore\SitecoreMembershipUser.cs" />
     <Compile Include="Modules\TimeAgoForumModule.cs" />
     <Compile Include="Modules\PageBBCodeRegistration.cs" />
     <Compile Include="Modules\PageLogoHandlerForumModule.cs" />
@@ -4995,6 +5004,21 @@
     <Content Include="UrlRewriter.config" />
     <None Include="Web References\RegisterV2\RegisterV2.wsdl" />
     <Content Include="v1.9.1.upgrade.web.config" />
+    <Content Include="web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Deploy.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Package.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\URLRewriter.NET\Intelligencia.UrlRewriter.csproj">
@@ -5060,6 +5084,7 @@
     <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
@@ -5084,7 +5109,7 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerPort>49458</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:50165/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

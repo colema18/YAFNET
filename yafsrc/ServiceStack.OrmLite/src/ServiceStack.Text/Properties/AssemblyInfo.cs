@@ -24,7 +24,7 @@ using System.Security;
 
 #if (!COMPACT_FRAMEWORK)
 
-[assembly: AllowPartiallyTrustedCallers]
+////[assembly: AllowPartiallyTrustedCallers]
 #endif
 
 // Version information for an assembly consists of the following four values:

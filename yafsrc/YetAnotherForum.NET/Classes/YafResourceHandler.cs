@@ -734,7 +734,7 @@ namespace YAF
 
             if (user != null)
             {
-                userKey = user.ProviderUserKey;
+                userKey = user.ProviderUserKey.ToString();
             }
 
             DataRow pageRow = LegacyDb.pageload(

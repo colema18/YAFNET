@@ -36,7 +36,7 @@ namespace YAF.Utils
   /// <summary>
   /// The yaf user profile.
   /// </summary>
-  public class YafUserProfile : ProfileBase, IYafUserProfile
+  public class YafUserProfile : Sitecore.Security.UserProfile, IYafUserProfile
   {
     #region Properties
 
@@ -72,7 +72,7 @@ namespace YAF.Utils
 
       set
       {
-        base["Birthday"] = value;
+        base["Birthday"] = value.ToString();
       }
     }
 
@@ -155,15 +155,9 @@ namespace YAF.Utils
     [CustomProviderData("Gender;int")]
     public int Gender
     {
-      get
-      {
-        return (int)base["Gender"];
-      }
+      get { return int.Parse(base["Gender"]); }
 
-      set
-      {
-        base["Gender"] = value;
-      }
+      set { base["Gender"] = value.ToString(); }
     }
 
     /// <summary>
@@ -520,10 +514,7 @@ namespace YAF.Utils
             return base["LastSyncedWithDNN"].ToType<DateTime>();
         }
 
-        set
-        {
-            base["LastSyncedWithDNN"] = value;
-        }
+        set { base["LastSyncedWithDNN"] = value.ToString(); }
     }
 
     #endregion

@@ -63,6 +63,10 @@ namespace YAF.Core
         /// </summary>
         static BaseModule()
         {
+            // MEAUWeb added to include the Meau.Web.dll for the YAF additions.
+            var MEAUWebDll = new YafModuleScanner()
+                .GetModules("Meau.Web.dll").ToArray();
+
             ExtensionAssemblies =
                 new YafModuleScanner().GetModules("YAF*.dll")
                     .Concat(
@@ -74,6 +78,7 @@ namespace YAF.Core
                                 && a.FullName.StartsWith("Intelligencia.UrlRewriter")
                                 && a.FullName.StartsWith("nStuff.UpdateControls")
                                 && a.FullName.StartsWith("Omu.ValueInjecter") && a.FullName.StartsWith("ServiceStack.")))
+                    .Concat(MEAUWebDll) //MEAUWeb added
                     .Except(new[] { Assembly.GetExecutingAssembly() })
                     .Where(a => !a.IsDynamic)
                     .Distinct()

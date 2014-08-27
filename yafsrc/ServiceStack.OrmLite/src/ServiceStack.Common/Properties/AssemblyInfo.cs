@@ -38,7 +38,7 @@ using System.Security;
 
 #if (!COMPACT_FRAMEWORK)
 
-[assembly: AllowPartiallyTrustedCallers]
+////[assembly: AllowPartiallyTrustedCallers]
 #endif
 
 // CCB Custom

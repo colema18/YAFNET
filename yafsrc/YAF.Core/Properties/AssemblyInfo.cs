@@ -51,10 +51,10 @@ using YAF.Types.Attributes;
 
 #if (!COMPACT_FRAMEWORK)
 
-[assembly: AllowPartiallyTrustedCallers]
+////[assembly: AllowPartiallyTrustedCallers]
 #endif
 
 #if !NCRUNCH
 [assembly: AssemblyDelaySign(false)]
-[assembly: AssemblyKeyFile("..\\YetAnotherForum.NET.snk")]
+//[assembly: AssemblyKeyFile("..\\YetAnotherForum.NET.snk")]
 #endif

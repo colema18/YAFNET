@@ -135,10 +135,12 @@ namespace YAF.Core
                 }
                 do
                 {
+                    //MEAU: force userKey to string in case it is an AD SID because the stored procedure can't handle the SID type
+                    var userKeyString = userKey == null ? null : userKey.ToString();
                     pageRow = LegacyDb.pageload(
                         this.Get<HttpSessionStateBase>().SessionID,
                         YafContext.Current.PageBoardID,
-                        userKey,
+                        userKeyString,
                         this.Get<HttpRequestBase>().GetUserRealIPAddress(),
                         location,
                         forumPage,
@@ -219,7 +221,7 @@ namespace YAF.Core
                 }
 #else
     // re-throw exception...
-				throw;
+                throw;
 #endif
             }
         }

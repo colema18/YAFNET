@@ -411,7 +411,7 @@ namespace YAF.Core
             foreach (string role in userRoles.Where(role => !GroupInGroupTable(role, groupTable)))
             {
                 // add the role...
-                LegacyDb.user_setrole(pageBoardID, user.ProviderUserKey, role);
+                LegacyDb.user_setrole(pageBoardID, user.ProviderUserKey.ToString(), role);
             }
 
             // remove groups...
