@@ -360,7 +360,10 @@ namespace YAF.Core
                 return null;
             }
 
-            int userId = UserMembershipHelper.GetUserIDFromProviderUserKey(user.ProviderUserKey);
+            //MEAU: force userKey to string in case it is an AD SID because the stored procedure can't handle the SID type
+            var userKeyString = user.ProviderUserKey == null ? null : user.ProviderUserKey.ToString();
+
+            int userId = UserMembershipHelper.GetUserIDFromProviderUserKey(userKeyString);
 
             if (userId == UserMembershipHelper.GuestUserId)
             {
@@ -388,7 +391,7 @@ namespace YAF.Core
                 user.UserName,
                 null,
                 user.Email,
-                user.ProviderUserKey,
+                userKeyString,
                 user.IsApproved);
 
             // get user groups...
@@ -411,7 +414,7 @@ namespace YAF.Core
             foreach (string role in userRoles.Where(role => !GroupInGroupTable(role, groupTable)))
             {
                 // add the role...
-                LegacyDb.user_setrole(pageBoardID, user.ProviderUserKey.ToString(), role);
+                LegacyDb.user_setrole(pageBoardID, userKeyString, role);
             }
 
             // remove groups...
