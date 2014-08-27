@@ -402,7 +402,21 @@ namespace YAF.Classes
         {
             get
             {
-                return IsDotNetNuke || IsMojoPortal || IsRainbow || IsPortal || IsPortalomatic;
+                return IsDotNetNuke || IsMojoPortal || IsRainbow || IsPortal || IsPortalomatic || IsDotNetNuke;
+            }
+        }
+
+        public static bool IsSitecore
+        {
+            get
+            {
+                if (HttpContext.Current == null)
+                {
+                    return AppDomain.CurrentDomain.GetAssemblies().Any(a => a.FullName.Contains("Sitecore"));
+                }
+
+                object obj = HttpContext.Current.Items["sc_CurrentItem"];
+                return obj != null;
             }
         }
 

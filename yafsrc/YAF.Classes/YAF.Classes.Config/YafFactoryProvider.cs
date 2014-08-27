@@ -103,6 +103,10 @@ namespace YAF.Classes
                 {
                     urlAssembly = "YAF.DotNetNuke.DotNetNukeUrlBuilder,YAF.DotNetNuke.Module";
                 }
+                else if (Config.IsSitecore)
+                {
+                    urlAssembly = "YAF.Classes.SitecoreUrlBuilder";
+                }
                 else if (Config.IsMojoPortal)
                 {
                     urlAssembly = "YAF.Mojo.MojoPortalUrlBuilder,YAF.Mojo";
