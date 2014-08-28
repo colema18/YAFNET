@@ -20,7 +20,8 @@ namespace YAF.Classes
 
             var path = HttpContext.Current.Request.Url.LocalPath;
             // return URL to current script with URL from parameter as script's parameter
-            return "{0}{1}?{2}".FormatWith(path, Config.ForceScriptName ?? ScriptName, url);
+            //return "{0}{1}?{2}".FormatWith(path, Config.ForceScriptName ?? ScriptName, url);
+            return "{0}?{1}".FormatWith(path, url);
         }
 
       

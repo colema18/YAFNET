@@ -111,12 +111,12 @@ namespace YAF.Core
                     user.UserName,
                     displayName,
                     user.Email,
-                    user.ProviderUserKey,
+                    user.UserName,
                     user.IsApproved);
 
                 foreach (string role in GetRolesForUser(user.UserName))
                 {
-                    LegacyDb.user_setrole(pageBoardID, user.ProviderUserKey, role);
+                    LegacyDb.user_setrole(pageBoardID, user.UserName, role);
                 }
 
                 // YAF.Classes.Data.DB.eventlog_create(DBNull.Value, user, string.Format("Created forum user {0}", user.UserName));
@@ -137,7 +137,14 @@ namespace YAF.Core
         /// </param>
         public static void CreateRole([NotNull] string roleName)
         {
-            YafContext.Current.Get<RoleProvider>().CreateRole(roleName);
+            try
+            {
+                //MEAU: Won't have rights to create roles in AD so Try Catching This
+                YafContext.Current.Get<RoleProvider>().CreateRole(roleName);
+            }
+            catch (Exception)
+            {
+            }
         }
 
         /// <summary>
@@ -359,9 +366,8 @@ namespace YAF.Core
                 // Check to make sure its not a guest
                 return null;
             }
-
-            //MEAU: force userKey to string in case it is an AD SID because the stored procedure can't handle the SID type
-            var userKeyString = user.ProviderUserKey == null ? null : user.ProviderUserKey.ToString();
+            //MEAU: force ProvideruserKey to be username to allow for switcher - AD and Sitecore
+            var userKeyString = user.ProviderUserKey == null ? null : user.UserName;
 
             int userId = UserMembershipHelper.GetUserIDFromProviderUserKey(userKeyString);
 
@@ -565,7 +571,7 @@ namespace YAF.Core
                             else
                             {
                                 // update the YAF table with the ProviderKey -- update the provider table if this is the YAF provider...
-                                LegacyDb.user_migrate(row["UserID"], user.ProviderUserKey, isYafProvider);
+                                LegacyDb.user_migrate(row["UserID"], user.UserName, isYafProvider);
 
                                 user.Comment = "Migrated from YetAnotherForum.NET";
 

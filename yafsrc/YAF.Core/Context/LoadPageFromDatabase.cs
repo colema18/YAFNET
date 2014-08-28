@@ -119,7 +119,8 @@ namespace YAF.Core
 
                 if (YafContext.Current.User != null)
                 {
-                    userKey = YafContext.Current.User.ProviderUserKey;
+                    //MEAU: force ProvideruserKey to be username to allow for switcher - AD and Sitecore
+                    userKey = YafContext.Current.User.UserName;
                 }
 
                 int tries = 0;
@@ -135,7 +136,6 @@ namespace YAF.Core
                 }
                 do
                 {
-                    //MEAU: force userKey to string in case it is an AD SID because the stored procedure can't handle the SID type
                     var userKeyString = userKey == null ? null : userKey.ToString();
                     pageRow = LegacyDb.pageload(
                         this.Get<HttpSessionStateBase>().SessionID,

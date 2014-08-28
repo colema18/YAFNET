@@ -317,8 +317,6 @@
     <Compile Include="Modules\Events\LastVisitEventHandler.cs" />
     <Compile Include="Modules\PopupDialogNotification.cs" />
     <Compile Include="Modules\ScriptsLoaderModule.cs" />
-    <Compile Include="Modules\Sitecore\SitecoreDomainManager.cs" />
-    <Compile Include="Modules\Sitecore\SitecoreMembershipUser.cs" />
     <Compile Include="Modules\TimeAgoForumModule.cs" />
     <Compile Include="Modules\PageBBCodeRegistration.cs" />
     <Compile Include="Modules\PageLogoHandlerForumModule.cs" />

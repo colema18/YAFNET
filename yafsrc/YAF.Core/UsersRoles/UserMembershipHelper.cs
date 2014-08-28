@@ -503,7 +503,7 @@ namespace YAF.Core
         /// </returns>
         public static MembershipUser GetUser(object providerKey)
         {
-            return YafContext.Current.Get<MembershipProvider>().GetUser(providerKey, false);
+            return YafContext.Current.Get<MembershipProvider>().GetUser(providerKey.ToString(), false);
         }
 
         /// <summary>
@@ -527,7 +527,7 @@ namespace YAF.Core
         /// </returns>
         public static MembershipUser GetUser(object providerKey, bool updateOnlineStatus)
         {
-            return YafContext.Current.Get<MembershipProvider>().GetUser(providerKey, updateOnlineStatus);
+            return YafContext.Current.Get<MembershipProvider>().GetUser(providerKey.ToString(), updateOnlineStatus);
         }
 
         /// <summary>

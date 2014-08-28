@@ -22,6 +22,8 @@
  * under the License.
  */
 
+using YAF.Utils;
+
 namespace YAF.Core
 {
     #region Using

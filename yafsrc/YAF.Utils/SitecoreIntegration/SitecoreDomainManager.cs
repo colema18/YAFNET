@@ -1,10 +1,10 @@
 ﻿using System.Web.Security;
 
-namespace YAF.Classes.Utils
+namespace YAF.Utils.SitecoreIntegration
 {
   public class SitecoreDomainManager
   {
-    private static readonly string _currentDomain = Sitecore.Context.Domain.Name;
+    private static readonly string _currentDomain = global::Sitecore.Context.Domain.Name;
     private const string _defaultDomain = "default";
     private static readonly string _anonymousUser = _currentDomain + "\\" + "Anonymous";
 

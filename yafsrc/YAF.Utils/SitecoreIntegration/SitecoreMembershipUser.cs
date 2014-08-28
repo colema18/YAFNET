@@ -4,7 +4,7 @@ using System.Web.Security;
 using Sitecore;
 using Sitecore.Diagnostics;
 
-namespace YAF.Classes.Utils
+namespace YAF.Utils.SitecoreIntegration
 {
   public class SitecoreMembershipUser : MembershipUser
   {
@@ -400,17 +400,17 @@ namespace YAF.Classes.Utils
     /// Gets the first found forum administrator.
     /// </summary>
     /// <value>The forum admin.</value>
-    public static SitecoreMembershipUser ForumAdmin
-    {
-      get
-      {
-        DataTable table = YAF.Classes.Data.LegacyDb.user_list(1, null, null, null, 1);
-        if (table.Rows.Count == 0)
-          throw new System.Security.SecurityException("No forum administrator was found in the YAF database");
-        string adminName = table.Rows[0]["Name"] as string;
-        return new SitecoreMembershipUser(Membership.GetUser(SitecoreDomainManager.GetFullyQualifiedUserName(adminName)));
-      }
-    }
+    //public static SitecoreMembershipUser ForumAdmin
+    //{
+    //  get
+    //  {
+    //    DataTable table = YAF.Classes.Data.LegacyDb.user_list(1, null, null, null, 1);
+    //    if (table.Rows.Count == 0)
+    //      throw new System.Security.SecurityException("No forum administrator was found in the YAF database");
+    //    string adminName = table.Rows[0]["Name"] as string;
+    //    return new SitecoreMembershipUser(Membership.GetUser(SitecoreDomainManager.GetFullyQualifiedUserName(adminName)));
+    //  }
+    //}
     
 
   }

@@ -549,7 +549,16 @@ namespace YAF.Providers.Profile
                     int size;
 
                     // parse custom provider data...
-                    DB.GetDbTypeAndSizeFromString(property.Attributes["CustomProviderData"].ToString(), out dbType, out size);
+                    //MEAU Custom Handling for Sitecore or YAF Default
+                    if (property.Attributes["CustomProviderData"] != null)
+                    {
+                        DB.GetDbTypeAndSizeFromString(property.Attributes["CustomProviderData"].ToString(), out dbType, out size);                        
+                    }
+                    else
+                    {
+                        dbType = SqlDbType.NVarChar;
+                        size = -1;
+                    }
 
                     // default the size to 256 if no size is specified
                     if (dbType == SqlDbType.NVarChar && size == -1)
