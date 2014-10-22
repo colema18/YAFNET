@@ -214,7 +214,10 @@ namespace YAF.Core
                     this.UserDisplayNameCollection.AddOrUpdate(userId, k => displayName, (k, v) => displayName);
                 }
             }
-
+            if (displayName != null && displayName.Contains("\\"))
+            {
+                displayName = displayName.Substring(displayName.IndexOf("\\") + 1);
+            }
             return displayName;
         }
 

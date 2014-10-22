@@ -25,6 +25,8 @@
 using System;
 using System.Web.Profile;
 using System.Web.Security;
+using Sitecore.Diagnostics;
+using Sitecore.Security.Accounts;
 using YAF.Types.Extensions;
 using YAF.Types.Interfaces;
 
