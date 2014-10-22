@@ -218,6 +218,11 @@ namespace YAF.Controls
                 }
 
                 string encodedTitle = this.HtmlEncode(link.Title);
+                if (encodedTitle != null && encodedTitle.Contains("\\"))
+                {
+                    encodedTitle = encodedTitle.Substring(encodedTitle.IndexOf("\\") + 1);
+                }
+
                 string url = link.URL;
 
                 writer.WriteLine(

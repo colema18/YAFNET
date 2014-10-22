@@ -274,7 +274,12 @@ namespace YAF.Providers.Roles
 
                 foreach (DataRow dr in roles.Rows)
                 {
-                    roleNames.Add(dr["Rolename"].ToStringDBNull()); // add rolename to collection
+                    var role = dr["Rolename"].ToStringDBNull();
+                    if (role != null && role.Contains("\\"))
+                    {
+                        role = role.Substring(role.IndexOf("\\") + 1);
+                    }
+                    roleNames.Add(role); // add rolename to collection
                 }
 
                 // add it to the dictionary cache...

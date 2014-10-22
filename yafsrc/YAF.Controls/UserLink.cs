@@ -169,6 +169,11 @@ namespace YAF.Controls
                                   ? this.Get<IUserDisplayName>().GetName(this.UserID)
                                   : this.ReplaceName;
 
+            if (displayName != null && displayName.Contains("\\"))
+            {
+                displayName = displayName.Substring(displayName.IndexOf("\\") + 1);
+            }
+
             if (this.UserID == -1 || !displayName.IsSet())
             {
                 return;

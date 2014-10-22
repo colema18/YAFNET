@@ -22,6 +22,9 @@
  * under the License.
  */
 
+using System.Collections.Generic;
+using Sitecore.Security.Accounts;
+
 namespace YAF.Core
 {
     #region Using
@@ -195,7 +198,9 @@ namespace YAF.Core
         /// </returns>
         public static string[] GetRolesForUser([NotNull] string username)
         {
-            return YafContext.Current.Get<RoleProvider>().GetRolesForUser(username);
+            return (from role in YafContext.Current.Get<RoleProvider>().GetRolesForUser(username)
+                    where role != null && role.Contains("\\")
+                    select role.Substring(role.IndexOf("\\") + 1)).ToArray();
         }
 
         /// <summary>
